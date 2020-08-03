@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="fr">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css"
+          integrity="sha384-r4NyP46KrjDleawBgD5tp8Y7UzmLA05oM1iAEQ17CSuDqnUK2+k9luXQOfXJCJ4I" crossorigin="anonymous">
+
+    <!-- Font-Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css">
+
+    <title>Produit | Orinoco Retro cameras shop</title>
+</head>
+
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-sm navbar-light bg-light">
+        <div class="container">
+
+            <a class="navbar-brand font-weight-bolder" href="index.html">Orinoco</a>
+
+            <!-- Responsive burger button -->
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <!-- Responsive burger button end -->
+
+            <!-- Nav links -->
+            <div class="collapse navbar-collapse justify-content-end" id="navbarNavDropdown">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="index.html">Accueil</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="./panier.html">Panier</a>
+                    </li>
+                </ul>
+            </div>
+            <!-- Nav links end -->
+
+        </div>
+    </nav>
+    <!-- Navbar end-->
+
+    <div class="camera-container py-5">
+        <div class="container">
+
+            <h1 class="camera-name | display-1 text-center"></h1>
+
+            <div class="row row-cols-1 row-cols-lg-2 text-center">
+
+                <div class="col text-center">
+                    <img src="./img/placeholder-image.png" alt="" class="camera-img | img-fluid py-5">
+                </div>
+
+                <div class="col d-flex align-items-center text-center">
+                    <div>
+                        <h2>Informations</h2>
+
+                        <p class="camera-description"></p>
+
+                        <h3 class="mb-4">Prix : <span class="camera-price"></span></h3>
+
+                        <div class="row row-cols-lg-2 justify-content-center">
+                            <!-- Form -->
+                            <form action="" class="col ">
+                                <select class="camera-options | form-select mb-3" aria-label="Default select example" required>
+                                    <option selected>Options</option>
+                                </select>
+
+                                <!-- Cart button -->
+                                <button href="" class="btn btn-success btn-block" type="submit">Ajouter au panier</button>
+                                <!-- Cart button end-->
+                            </form>
+                            <!-- Form end -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+            integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous">
+    </script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.min.js"
+            integrity="sha384-oesi62hOLfzrys4LxRF63OJCXdXDipiYWBnvTl9Y9/TRlw5xlKIEHpNyvvDShgf/" crossorigin="anonymous">
+    </script>
+
+    <!-- Custom JS -->
+    <script src="/js/product.js"></script>
+</body>
+
+</html>
