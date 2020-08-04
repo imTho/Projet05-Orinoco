@@ -10,6 +10,10 @@ const cameraDescription = document.querySelector(".camera-description");
 const cameraPrice = document.querySelector(".camera-price");
 const cameraOptions = document.querySelector(".camera-options");
 
+const addToCartButton = document.querySelector(".button-addToCart");
+
+var panier = [];
+
 // Getting the camera
 async function getCamera() {
     try {
@@ -34,16 +38,59 @@ function displayCamera(camera) {
 
     camera.lenses.forEach(lense => {
         lenseOption += `
-        <option value="${lense}">${lense}</option>
+        <option class="camera-option" value="${lense}">${lense}</option>
         `;
     });
 
     cameraOptions.innerHTML = lenseOption;
 }
 
+//Adding to cart
+function addToCart(camera) {
+    const selectedOption = document.querySelector('.camera-option').value;
+
+    class CartItem {
+        constructor(id, name, image, description, price, option) {
+            this.id = id;
+            this.name = name;
+            this.image = image;
+            this.description = description;
+            this.price = price;
+            this.option = option;
+        }
+    }
+
+    const item = new CartItem(idCamera, camera.name, camera.imageUrl, camera.description, camera.price / 1000, selectedOption);
+    panier.push(item);
+    console.log(panier);
+}
+
+// MAIN FUNCTION
 document.addEventListener("DOMContentLoaded", () => {
     console.log("Content loaded");
 
     //Getting the camera and displaying
-    getCamera().then(camera => displayCamera(camera));
+    getCamera().then(camera => {
+        displayCamera(camera);
+        addToCartButton.addEventListener("click", addToCart(camera));
+
+        // addToCartButton.addEventListener("click", () => {
+        //     const selectedOption = document.querySelector('.camera-option').value;
+
+        //     class CartItem {
+        //         constructor(id, name, image, description, price, option) {
+        //             this.id = id;
+        //             this.name = name;
+        //             this.image = image;
+        //             this.description = description;
+        //             this.price = price;
+        //             this.option = option;
+        //         }
+        //     }
+
+        //     const item = new CartItem(idCamera, camera.name, camera.imageUrl, camera.description, camera.price / 1000, selectedOption);
+        //     panier.push(item);
+        //     console.log(panier);
+        // });
+    });
 });
