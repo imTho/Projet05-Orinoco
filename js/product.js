@@ -3,6 +3,8 @@ const apiUrl = 'http://localhost:3000/api/cameras/';
 const idUrl = window.location.search;
 const idCamera = idUrl.substr(4);
 
+var panier = JSON.parse(localStorage.getItem('panier')) || [];
+
 const cameraDOM = document.querySelector(".camera-container");
 const cameraName = document.querySelector(".camera-name");
 const cameraImg = document.querySelector(".camera-img");
@@ -22,9 +24,6 @@ class CartItem {
         this.option = option;
     }
 }
-
-var panier = [];
-
 
 // Getting the camera
 async function getCamera() {
@@ -66,8 +65,9 @@ function addToCart(camera) {
     } else {
         const item = new CartItem(camera.id, camera.name, camera.imageUrl, camera.description, camera.price / 1000, optionValue);
         panier.push(item);
-        console.log(panier);
         localStorage.setItem("panier", JSON.stringify(panier));
+        //Displaying cart item number
+        itemCounter.textContent = "( " + panier.length + " )";
     }
 }
 

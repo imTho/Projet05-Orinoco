@@ -3,6 +3,8 @@ const apiUrl = 'http://localhost:3000/api/cameras/';
 
 const productsDOM = document.querySelector('.products-display');
 
+var panier = JSON.parse(localStorage.getItem('panier')) || [];
+
 // Getting the products
 async function getProducts() {
     try {
@@ -43,7 +45,6 @@ function displayProducts(products) {
 
 document.addEventListener("DOMContentLoaded", () => {
     console.log("Content loaded");
-
 
     //Getting all products
     getProducts().then(data => displayProducts(data)); // Récuperer les données depuis l'API puis afficher les produits
