@@ -1,9 +1,8 @@
 // Variables
 const apiUrl = 'http://localhost:3000/api/cameras/';
 const idUrl = window.location.search;
-const idCamera = idUrl.substr(4);
-
-var panier = JSON.parse(localStorage.getItem('panier')) || [];
+const urlParams = new URLSearchParams(idUrl);
+const idCamera = urlParams.get('id');
 
 const cameraDOM = document.querySelector(".camera-container");
 const cameraName = document.querySelector(".camera-name");
@@ -15,12 +14,8 @@ const cameraOptions = document.querySelector(".camera-options");
 const addToCartButton = document.querySelector(".button-addToCart");
 
 class CartItem {
-    constructor(id, name, image, description, price, option) {
+    constructor(id, option) {
         this.id = id;
-        this.name = name;
-        this.image = image;
-        this.description = description;
-        this.price = price;
         this.option = option;
     }
 }
@@ -42,7 +37,7 @@ function displayCamera(camera) {
     cameraName.innerHTML = camera.name;
     cameraImg.src = camera.imageUrl;
     cameraDescription.innerHTML = camera.description;
-    cameraPrice.innerHTML = camera.price / 1000 + " €";
+    cameraPrice.innerHTML = camera.price / 100 + " €";
 
     //lenses options
     let lenseOption = '';
@@ -60,10 +55,10 @@ function displayCamera(camera) {
 function addToCart(camera) {
     const optionValue = cameraOptions.options[cameraOptions.selectedIndex].value;
 
-    if (panier.some(item => item.id === camera.id) && panier.some(item => item.option === optionValue)) {
+    if (panier.some(item => item.id === idCamera) && panier.some(item => item.option === optionValue)) {
         alert("L'objet est deja dans votre panier.");
     } else {
-        const item = new CartItem(camera.id, camera.name, camera.imageUrl, camera.description, camera.price / 1000, optionValue);
+        const item = new CartItem(idCamera, optionValue);
         panier.push(item);
         localStorage.setItem("panier", JSON.stringify(panier));
         //Displaying cart item number

@@ -3,8 +3,6 @@ const apiUrl = 'http://localhost:3000/api/cameras/';
 
 const productsDOM = document.querySelector('.products-display');
 
-var panier = JSON.parse(localStorage.getItem('panier')) || [];
-
 // Getting the products
 async function getProducts() {
     try {
@@ -32,7 +30,7 @@ function displayProducts(products) {
                     <div class="card-body">
                         <h5 class="card-title">${product.name}</h5>
                         <p class="card-text">${product.description}</p>
-                        <p>Prix : <span class="font-weight-bold">${product.price / 1000} €</span></p>
+                        <p>Prix : <span class="font-weight-bold">${product.price / 100} €</span></p>
                         <a href="./product.html?id=${product._id}" class="btn btn-outline-primary btn-block">Voir le produit</a>
                     </div>
             </div>
