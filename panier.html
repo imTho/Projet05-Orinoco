@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css"
+          integrity="sha384-r4NyP46KrjDleawBgD5tp8Y7UzmLA05oM1iAEQ17CSuDqnUK2+k9luXQOfXJCJ4I" crossorigin="anonymous" />
+
+    <!-- Font-Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" />
+
+    <title>Panier | Orinoco Retro cameras shop</title>
+</head>
+
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-sm navbar-light bg-light">
+        <div class="container">
+            <a class="navbar-brand font-weight-bolder" href="index.html">Orinoco</a>
+
+            <!-- Responsive burger button -->
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <!-- Responsive burger button end -->
+
+            <!-- Nav links -->
+            <div class="collapse navbar-collapse justify-content-end" id="navbarNavDropdown">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="index.html">Accueil</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="./panier.html">Panier <span class="cart-count | small"></span></a>
+                    </li>
+                </ul>
+            </div>
+            <!-- Nav links end -->
+        </div>
+    </nav>
+    <!-- Navbar end-->
+
+    <div class="panier-container py-5">
+
+        <h1 class="camera-name | display-1 text-center mb-5"> Votre panier</h1>
+
+        <div class="py-5 bg-light">
+            <div class="container">
+                <h2 class=" mb-5">Vos articles :</h2>
+
+                <!-- cart item -->
+                <div class="row bg-white p-2 my-5 rounded">
+                    <div class="col-3 font-weight-bold"> <img src="./server/images/vcam_1.jpg" alt="" class="img-fluid"></div>
+                    <div class="col-2 font-weight-bold d-flex justify-content-center align-items-center"> Nom produit </div>
+                    <div class="col-2 font-weight-bold d-flex justify-content-center align-items-center"> 50mm 1.4</div>
+                    <div class="col-2 font-weight-bold d-flex justify-content-center align-items-center">
+                        <input type="number" id="quantity" name="quantity" min="0" max="10" step="1" value="1">
+                    </div>
+                    <div class="col-2 font-weight-bold d-flex justify-content-center align-items-center"> 209 €</div>
+                    <div class="col-1 font-weight-bold d-flex justify-content-center align-items-center">
+                        <a class="btn btn-outline-danger" href="#" role="button">Supprimer</a>
+                    </div>
+                </div>
+                <!-- cart item end -->
+
+                <p class="mb-5 display-6">Total de vos articles : <span class="font-weight-bold"> 209 € </span></p>
+            </div>
+        </div>
+
+        <!-- Checkout form -->
+        <div class="container my-5">
+
+            <div class="row g-3">
+                <div class="col-md-7 col-lg-12">
+                    <h2 class="mb-3">Adresse de facturation</h2>
+                    <form class="needs-validation" novalidate>
+                        <div class="row g-3">
+                            <div class="col-sm-6">
+                                <label for="firstName" class="form-label">Prénom</label>
+                                <input type="text" class="form-control" id="firstName" placeholder="" value="" required>
+                                <div class="invalid-feedback">
+                                    Prénom invalide.
+                                </div>
+                            </div>
+
+                            <div class="col-sm-6">
+                                <label for="lastName" class="form-label">Nom</label>
+                                <input type="text" class="form-control" id="lastName" placeholder="" value="" required>
+                                <div class="invalid-feedback">
+                                    Nom invalide.
+                                </div>
+                            </div>
+
+                            <div class="col-12">
+                                <label for="email" class="form-label">Email</label>
+                                <input type="email" class="form-control" id="email" placeholder="you@example.com">
+                                <div class="invalid-feedback">
+                                    Veillez entrer une adresse valide.
+                                </div>
+                            </div>
+
+                            <div class="col-12">
+                                <label for="address" class="form-label">Adresse</label>
+                                <input type="text" class="form-control" id="address" placeholder="ex: 10 rue des Fleurs" required>
+                                <div class="invalid-feedback">
+                                    Veillez entrer une adresse de livraison valide.
+                                </div>
+                            </div>
+
+                            <div class="col-md-5">
+                                <label for="city" class="form-label">Ville</label>
+                                <input type="text" class="form-control" id="city" placeholder="Votre ville" required>
+                                <div class="invalid-feedback">
+                                    Veillez renseigner votre ville.
+                                </div>
+                            </div>
+
+                            <div class="col-md-4">
+                                <label for="code-postal" class="form-label">Pays</label>
+                                <input type="text" class="form-control" id="code-postal" placeholder="ex: 91000" required>
+                                <div class="invalid-feedback">
+                                    Veillez renseigner votre code-postal.
+                                </div>
+                            </div>
+
+                            <div class="col-md-3">
+                                <label for="country" class="form-label">Pays</label>
+                                <input type="text" class="form-control" id="country" placeholder="ex: France" required>
+                                <div class="invalid-feedback">
+                                    Veillez renseigner votre pays.
+                                </div>
+                            </div>
+                        </div>
+
+                        <button class="btn btn-success btn-lg btn-block mt-5" type="submit">Valider la commande</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <!-- Checkout form end-->
+
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src=" https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+            integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous">
+    </script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.min.js"
+            integrity="sha384-oesi62hOLfzrys4LxRF63OJCXdXDipiYWBnvTl9Y9/TRlw5xlKIEHpNyvvDShgf/" crossorigin="anonymous">
+    </script>
+
+    <!-- Custom JS -->
+    <script src="js/panier.js"></script>
+    <script src="js/utility.js"></script>
+</body>
+
+</html>
