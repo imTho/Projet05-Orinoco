@@ -45,5 +45,5 @@ document.addEventListener("DOMContentLoaded", () => {
     console.log("Content loaded");
 
     //Getting all products
-    getProducts().then(data => displayProducts(data)); // Récuperer les données depuis l'API puis afficher les produits
+    getProducts().then(products => displayProducts(products)); // Récuperer les données depuis l'API puis afficher les produits
 });

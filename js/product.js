@@ -4,6 +4,8 @@ const idUrl = window.location.search;
 const urlParams = new URLSearchParams(idUrl);
 const idCamera = urlParams.get('id');
 
+var panier = JSON.parse(localStorage.getItem('panier')) || [];
+
 const cameraDOM = document.querySelector(".camera-container");
 const cameraName = document.querySelector(".camera-name");
 const cameraImg = document.querySelector(".camera-img");

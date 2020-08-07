@@ -51,22 +51,9 @@
         <div class="py-5 bg-light">
             <div class="container">
                 <h2 class=" mb-5">Vos articles :</h2>
-
-                <!-- cart item -->
-                <div class="row bg-white p-2 my-5 rounded">
-                    <div class="col-3 font-weight-bold"> <img src="./server/images/vcam_1.jpg" alt="" class="img-fluid"></div>
-                    <div class="col-2 font-weight-bold d-flex justify-content-center align-items-center"> Nom produit </div>
-                    <div class="col-2 font-weight-bold d-flex justify-content-center align-items-center"> 50mm 1.4</div>
-                    <div class="col-2 font-weight-bold d-flex justify-content-center align-items-center">
-                        <input type="number" id="quantity" name="quantity" min="0" max="10" step="1" value="1">
-                    </div>
-                    <div class="col-2 font-weight-bold d-flex justify-content-center align-items-center"> 209 €</div>
-                    <div class="col-1 font-weight-bold d-flex justify-content-center align-items-center">
-                        <a class="btn btn-outline-danger" href="#" role="button">Supprimer</a>
-                    </div>
+                <div class="item-display | container">
+                    <!-- Affichage dynamique (panier.js) -->
                 </div>
-                <!-- cart item end -->
-
                 <p class="mb-5 display-6">Total de vos articles : <span class="font-weight-bold"> 209 € </span></p>
             </div>
         </div>
@@ -111,27 +98,11 @@
                                 </div>
                             </div>
 
-                            <div class="col-md-5">
+                            <div class="col-md-12">
                                 <label for="city" class="form-label">Ville</label>
-                                <input type="text" class="form-control" id="city" placeholder="Votre ville" required>
+                                <input type="text" class="form-control" id="city" placeholder="ex: Paris" required>
                                 <div class="invalid-feedback">
                                     Veillez renseigner votre ville.
-                                </div>
-                            </div>
-
-                            <div class="col-md-4">
-                                <label for="code-postal" class="form-label">Code-postal</label>
-                                <input type="text" class="form-control" id="code-postal" placeholder="ex: 91000" required>
-                                <div class="invalid-feedback">
-                                    Veillez renseigner votre code-postal.
-                                </div>
-                            </div>
-
-                            <div class="col-md-3">
-                                <label for="country" class="form-label">Pays</label>
-                                <input type="text" class="form-control" id="country" placeholder="ex: France" required>
-                                <div class="invalid-feedback">
-                                    Veillez renseigner votre pays.
                                 </div>
                             </div>
                         </div>
