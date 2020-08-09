@@ -1,6 +1,7 @@
 // Variables
 const apiUrl = 'http://localhost:3000/api/cameras/';
 var panier = JSON.parse(localStorage.getItem('panier')) || [];
+var itemsTotalPrice = 0;
 
 const itemImg = document.querySelector(".item-image");
 const itemName = document.querySelector(".item-name");
@@ -8,6 +9,7 @@ const itemOption = document.querySelector(".item-option");
 const itemQuantity = document.querySelector(".item-quantity");
 const itemPrice = document.querySelector(".item-price");
 const itemDisplay = document.querySelector(".item-display");
+const totalPrice = document.querySelector(".total-price");
 
 const itemDeleteBtn = document.querySelector(".item-delete");
 
@@ -25,6 +27,7 @@ async function getItemFromCart(id) {
     }
 }
 
+//Displaying Items
 function displayingItems(item) {
     let display = '';
     let newDiv = document.createElement("div");
@@ -50,6 +53,13 @@ function displayingItems(item) {
     newDiv.innerHTML = display;
 }
 
+//Total Price
+function displayingTotalPrice(item) {
+    itemsTotalPrice += item.price;
+    totalPrice.innerHTML = itemsTotalPrice / 100 + " €";
+}
+
+//MAIN FUNCTION
 document.addEventListener("DOMContentLoaded", () => {
     console.log("Content loaded");
 
@@ -58,7 +68,7 @@ document.addEventListener("DOMContentLoaded", () => {
         getItemFromCart(item.id).then(item => {
             item.lenses = lensesOption
             displayingItems(item);
-            console.log(item);
+            displayingTotalPrice(item);
         });
     });
 });
