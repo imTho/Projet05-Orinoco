@@ -3,17 +3,10 @@ const apiUrl = 'http://localhost:3000/api/cameras/';
 var panier = JSON.parse(localStorage.getItem('panier')) || [];
 var itemsTotalPrice = 0;
 
-const itemImg = document.querySelector(".item-image");
-const itemName = document.querySelector(".item-name");
-const itemOption = document.querySelector(".item-option");
-const itemQuantity = document.querySelector(".item-quantity");
-const itemPrice = document.querySelector(".item-price");
 const itemDisplay = document.querySelector(".item-display");
 const totalPrice = document.querySelector(".total-price");
 
 const itemDeleteBtn = document.querySelector(".item-delete");
-
-
 
 //Getting Items from cart
 async function getItemFromCart(id) {
@@ -36,14 +29,18 @@ function displayingItems(item) {
     display += `
          <!-- Single item -->
         <div class="single-item | row bg-white p-2 my-5 rounded">
-            <div class="col-3 font-weight-bold"> <img src="${item.imageUrl}" alt="" class="item-image | img-fluid"></div>
-            <div class="item-name | col-2 font-weight-bold d-flex justify-content-center align-items-center"> ${item.name} </div>
-            <div class="item-option | col-2 font-weight-bold d-flex justify-content-center align-items-center"> ${item.lenses}</div>
-            <div class="col-2 font-weight-bold d-flex justify-content-center align-items-center">
-                <input class="item-quantity" type="number" id="quantity" name="quantity" min="0" max="10" step="1" value="1">
+            <div class="col-lg-3 col-md-12 font-weight-bold"> <img src="${item.imageUrl}" alt="" class="item-image | img-fluid"></div>
+            <div class="item-name | col-lg-2 col-md-6 font-weight-bold d-flex justify-content-center align-items-center"> ${item.name} </div>
+            <div class="item-option | col-lg-2 col-md-6 font-weight-bold d-flex justify-content-center align-items-center"> ${item.lenses}</div>
+            <div class="col-lg-2 col-md-6 font-weight-bold d-flex justify-content-center align-items-center"> 
+                <div class="item-quantity"> 1 </div>
+                <div class="quantity-btn | d-flex flex-column pl-3">
+                    <i class="quantity-btn-up |  fas fa-chevron-up"></i>
+                    <i class="quantity-btn-down |  fas fa-chevron-down"></i>
+                </div>
             </div>
-            <div class="item-price | col-2 font-weight-bold d-flex justify-content-center align-items-center">${item.price /100} €</div>
-            <div class="col-1 font-weight-bold d-flex justify-content-center align-items-center">
+            <div class="item-price | col-lg-2 col-md-6 font-weight-bold d-flex justify-content-center align-items-center">${item.price /100} €</div>
+            <div class="col-lg-1 col-md-12 font-weight-bold d-flex justify-content-center align-items-center">
                 <a class="item-delete | btn btn-outline-danger" href="#" role="button">Supprimer</a>
             </div>
         </div>
@@ -51,6 +48,36 @@ function displayingItems(item) {
         `;
 
     newDiv.innerHTML = display;
+}
+
+//Item quantity
+function selectQuantity(item) {
+    let itemQuantity = document.querySelector(".item-quantity");
+    let quantityUp = document.querySelector(".quantity-btn-up");
+    let quantityDwn = document.querySelector(".quantity-btn-down");
+    let itemPrice = document.querySelector(".item-price");
+
+    let quantity = 0;
+
+    quantityUp.addEventListener("click", () => {
+        quantity++;
+        itemQuantity.innerHTML = quantity;
+        let updatedPrice = quantity * item.price / 100
+        itemPrice.innerHTML = updatedPrice + " €";
+    });
+
+    quantityDwn.addEventListener("click", () => {
+        if (quantity > 2) {
+            quantity--;
+            itemQuantity.innerHTML = quantity;
+            let updatedPrice = quantity * item.price / 100
+            itemPrice.innerHTML = updatedPrice - item.price / 100 + " €";
+        } else {
+            quantity = 1;
+            itemQuantity.innerHTML = quantity;
+            itemPrice.innerHTML = item.price / 100 + " €";
+        }
+    });
 }
 
 //Total Price
@@ -66,9 +93,11 @@ document.addEventListener("DOMContentLoaded", () => {
     panier.forEach(item => {
         let lensesOption = item.option;
         getItemFromCart(item.id).then(item => {
-            item.lenses = lensesOption
+            item.lenses = lensesOption;
             displayingItems(item);
+            selectQuantity(item);
             displayingTotalPrice(item);
+            console.log(item);
         });
     });
 });
