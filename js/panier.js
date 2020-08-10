@@ -1,6 +1,5 @@
 // Variables
 const apiUrl = 'http://localhost:3000/api/cameras/';
-var panier = JSON.parse(localStorage.getItem('panier')) || [];
 var itemsTotalPrice = 0;
 
 const itemDisplay = document.querySelector(".item-display");
@@ -35,11 +34,11 @@ function displayingItems(item) {
             <div class="col-lg-2 col-md-6 font-weight-bold d-flex justify-content-center align-items-center"> 
                 <div class="item-quantity"> 1 </div>
                 <div class="quantity-btn | d-flex flex-column pl-3">
-                    <i class="quantity-btn-up |  fas fa-chevron-up"></i>
-                    <i class="quantity-btn-down |  fas fa-chevron-down"></i>
+                    <i class="quantity-btn-up |  fas fa-chevron-up" data-id="${item._id}"></i>
+                    <i class="quantity-btn-down |  fas fa-chevron-down" data-id="${item._id}"></i>
                 </div>
             </div>
-            <div class="item-price | col-lg-2 col-md-6 font-weight-bold d-flex justify-content-center align-items-center">${item.price /100} €</div>
+            <div class="item-price | col-lg-2 col-md-6 font-weight-bold d-flex justify-content-center align-items-center" data-id="${item._id}">${item.price /100} €</div>
             <div class="col-lg-1 col-md-12 font-weight-bold d-flex justify-content-center align-items-center">
                 <a class="item-delete | btn btn-outline-danger" href="#" role="button">Supprimer</a>
             </div>
@@ -57,26 +56,23 @@ function selectQuantity(item) {
     let quantityDwn = document.querySelector(".quantity-btn-down");
     let itemPrice = document.querySelector(".item-price");
 
-    let quantity = 0;
-
     quantityUp.addEventListener("click", () => {
+        let quantity = parseInt(itemQuantity.textContent, 10);
+        console.log(quantity);
         quantity++;
         itemQuantity.innerHTML = quantity;
-        let updatedPrice = quantity * item.price / 100
-        itemPrice.innerHTML = updatedPrice + " €";
+        itemPrice.innerHTML = quantity * item.price / 100 + " €";
     });
 
     quantityDwn.addEventListener("click", () => {
-        if (quantity > 2) {
-            quantity--;
-            itemQuantity.innerHTML = quantity;
-            let updatedPrice = quantity * item.price / 100
-            itemPrice.innerHTML = updatedPrice - item.price / 100 + " €";
-        } else {
+        let quantity = parseInt(itemQuantity.textContent, 10);
+        console.log(quantity);
+        quantity--;
+        if (quantity <= 0) {
             quantity = 1;
-            itemQuantity.innerHTML = quantity;
-            itemPrice.innerHTML = item.price / 100 + " €";
         }
+        itemQuantity.innerHTML = quantity;
+        itemPrice.innerHTML = quantity * item.price / 100 + " €";
     });
 }
 
@@ -97,6 +93,7 @@ document.addEventListener("DOMContentLoaded", () => {
             displayingItems(item);
             selectQuantity(item);
             displayingTotalPrice(item);
+
             console.log(item);
         });
     });
