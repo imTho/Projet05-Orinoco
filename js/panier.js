@@ -25,7 +25,7 @@ function displayingItems(item) {
 
     display += `
          <!-- Single item -->
-        <div class="single-item | row bg-white p-2 my-5 rounded">
+        <div class="single-item | row bg-white p-2 my-5 rounded" data-id="${item._id}">
             <div class="col-lg-3 col-md-12 font-weight-bold"> <img src="${item.imageUrl}" alt="" class="item-image | img-fluid"></div>
             <div class="item-name | col-lg-2 col-md-6 font-weight-bold d-flex justify-content-center align-items-center"> ${item.name} </div>
             <div class="item-option | col-lg-2 col-md-6 font-weight-bold d-flex justify-content-center align-items-center"> ${item.lenses}</div>
@@ -135,16 +135,23 @@ function deletingItem(item) {
 
             if (event.target.getAttribute("data-id") === item._id) {
                 //Deleting from display
-                let singleItem = document.querySelector(".single-item");
-                singleItem.remove();
+                let singleItem = document.querySelectorAll(".single-item");
+
+                singleItem.forEach(div => {
+                    if (div.getAttribute("data-id") === item._id) {
+                        div.remove();
+                    }
+                });
 
                 //Deleting from cart
                 let idItem = panier.indexOf(item._id);
                 panier.splice(idItem, 1);
                 localStorage.setItem("panier", JSON.stringify(panier));
+
+                //Updating item count
                 itemCounter.textContent = "( " + panier.length + " )";
 
-                //Uptdating total price
+                //Updating total price
                 displayingTotalPrice()
             };
 
@@ -158,32 +165,22 @@ function deletingItem(item) {
 function sendOrder() {
     const submitBtn = document.querySelector('.submit-button');
 
-    submitBtn.addEventListener("submit", () => {
+    submitBtn.addEventListener("submit", (event) => {
+        event.preventDefault();
         const firstName = document.getElementById('firstName').value;
         const lastName = document.getElementById('lastName').value;
         const address = document.getElementById('address').value;
         const city = document.getElementById('city').value;
         const email = document.getElementById('email').value;
 
-        class order {
-            constructor(contact, products) {
-                this.contact = contact;
-                this.products = products;
-            };
-        };
-
-        class contactInfo {
-            constructor(firstName, lastName, address, city, email) {
-                this.firstName = firstName;
-                this.lastName = lastName;
-                this.address = address;
-                this.city = city;
-                this.email = email;
-            };
-        };
-
         //Contact
-        let contact = new contactInfo(firstName, lastName, address, city, email);
+        let contact = {
+            firstName: firstName,
+            lastName: lastName,
+            address: address,
+            city: city,
+            email: email
+        }
 
         //Products
         let products = [];
@@ -192,15 +189,15 @@ function sendOrder() {
         });
 
         //Order
-        let newOrder = new order(contact, products);
-        console.log(newOrder);
+        let order = {
+            contact: contact,
+            products: products
+        }
+        console.log(order);
         // (POST)
         // (clear cart)
     });
 };
-
-
-
 
 //MAIN FUNCTION
 document.addEventListener("DOMContentLoaded", () => {
