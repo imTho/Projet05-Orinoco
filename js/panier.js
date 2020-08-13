@@ -89,6 +89,7 @@ function selectQuantity(item) {
 
                 });
             };
+            //Uptdating total price
             displayingTotalPrice()
         });
     });
@@ -118,6 +119,7 @@ function selectQuantity(item) {
                     };
                 });
             };
+            //Uptdating total price
             displayingTotalPrice()
         });
     });
@@ -141,7 +143,6 @@ function deletingItem(item) {
                 panier.splice(idItem, 1);
                 localStorage.setItem("panier", JSON.stringify(panier));
                 itemCounter.textContent = "( " + panier.length + " )";
-                console.log(panier);
 
                 //Uptdating total price
                 displayingTotalPrice()
@@ -153,6 +154,54 @@ function deletingItem(item) {
 
 };
 
+//Submit Information
+function sendOrder() {
+    const submitBtn = document.querySelector('.submit-button');
+
+    submitBtn.addEventListener("submit", () => {
+        const firstName = document.getElementById('firstName').value;
+        const lastName = document.getElementById('lastName').value;
+        const address = document.getElementById('address').value;
+        const city = document.getElementById('city').value;
+        const email = document.getElementById('email').value;
+
+        class order {
+            constructor(contact, products) {
+                this.contact = contact;
+                this.products = products;
+            };
+        };
+
+        class contactInfo {
+            constructor(firstName, lastName, address, city, email) {
+                this.firstName = firstName;
+                this.lastName = lastName;
+                this.address = address;
+                this.city = city;
+                this.email = email;
+            };
+        };
+
+        //Contact
+        let contact = new contactInfo(firstName, lastName, address, city, email);
+
+        //Products
+        let products = [];
+        panier.forEach(item => {
+            products.push(item.id);
+        });
+
+        //Order
+        let newOrder = new order(contact, products);
+        console.log(newOrder);
+        // (POST)
+        // (clear cart)
+    });
+};
+
+
+
+
 //MAIN FUNCTION
 document.addEventListener("DOMContentLoaded", () => {
     console.log("Content loaded");
@@ -163,8 +212,9 @@ document.addEventListener("DOMContentLoaded", () => {
             item.lenses = lensesOption;
             displayingItems(item);
             selectQuantity(item);
-            displayingTotalPrice()
-            deletingItem(item)
+            displayingTotalPrice();
+            deletingItem(item);
         });
     });
+    sendOrder();
 });

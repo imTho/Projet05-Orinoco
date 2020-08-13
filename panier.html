@@ -64,51 +64,38 @@
             <div class="row g-3">
                 <div class="col">
                     <h2 class="mb-3">Adresse de facturation</h2>
-                    <form class="needs-validation" novalidate>
+
+                    <form class="needs-validation">
                         <div class="row g-3">
                             <div class="col-sm-6">
                                 <label for="firstName" class="form-label">Prénom</label>
                                 <input type="text" class="form-control" id="firstName" placeholder="" value="" required>
-                                <div class="invalid-feedback">
-                                    Prénom invalide.
-                                </div>
                             </div>
 
                             <div class="col-sm-6">
                                 <label for="lastName" class="form-label">Nom</label>
                                 <input type="text" class="form-control" id="lastName" placeholder="" value="" required>
-                                <div class="invalid-feedback">
-                                    Nom invalide.
-                                </div>
                             </div>
 
                             <div class="col-12">
                                 <label for="email" class="form-label">Email</label>
-                                <input type="email" class="form-control" id="email" placeholder="you@example.com">
-                                <div class="invalid-feedback">
-                                    Veillez entrer une adresse valide.
-                                </div>
+                                <input type="email" class="form-control" id="email" placeholder="you@example.com" required>
                             </div>
 
                             <div class="col-12">
                                 <label for="address" class="form-label">Adresse</label>
                                 <input type="text" class="form-control" id="address" placeholder="ex: 10 rue des Fleurs" required>
-                                <div class="invalid-feedback">
-                                    Veillez entrer une adresse de livraison valide.
-                                </div>
                             </div>
 
                             <div class="col-md-12">
                                 <label for="city" class="form-label">Ville</label>
                                 <input type="text" class="form-control" id="city" placeholder="ex: Paris" required>
-                                <div class="invalid-feedback">
-                                    Veillez renseigner votre ville.
-                                </div>
                             </div>
                         </div>
 
-                        <button class="btn btn-success btn-lg btn-block mt-5" type="submit">Valider la commande</button>
+                        <input class="submit-button | btn btn-success btn-lg btn-block mt-5" type="submit" value="Valider la commande"></input>
                     </form>
+
                 </div>
             </div>
         </div>
