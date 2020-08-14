@@ -17,6 +17,15 @@ async function getItemFromCart(id) {
     }
 }
 
+//Creating unique Id
+function creatingUniqueId() {
+    let i = 0;
+    panier.forEach(item => {
+        i++;
+        item.uniqueId = i;
+    });
+}
+
 //Displaying Items
 function displayingItems(item) {
     let display = '';
@@ -25,20 +34,20 @@ function displayingItems(item) {
 
     display += `
          <!-- Single item -->
-        <div class="single-item | row bg-white p-2 my-5 rounded" data-id="${item._id}">
+        <div class="single-item | row bg-white p-2 my-5 rounded" data-id="${item.uniqueId}">
             <div class="col-lg-3 col-md-12 font-weight-bold"> <img src="${item.imageUrl}" alt="" class="item-image | img-fluid"></div>
             <div class="item-name | col-lg-2 col-md-6 font-weight-bold d-flex justify-content-center align-items-center"> ${item.name} </div>
             <div class="item-option | col-lg-2 col-md-6 font-weight-bold d-flex justify-content-center align-items-center"> ${item.lenses}</div>
             <div class="col-lg-2 col-md-6 font-weight-bold d-flex justify-content-center align-items-center"> 
-                <div class="item-quantity" data-id="${item._id}"> 1 </div>
+                <div class="item-quantity" data-id="${item.uniqueId}"> 1 </div>
                 <div class="quantity-btn | d-flex flex-column pl-3">
-                    <i class="quantity-btn-up |  fas fa-chevron-up" data-id="${item._id}"></i>
-                    <i class="quantity-btn-down |  fas fa-chevron-down" data-id="${item._id}"></i>
+                    <i class="quantity-btn-up |  fas fa-chevron-up" data-id="${item.uniqueId}"></i>
+                    <i class="quantity-btn-down |  fas fa-chevron-down" data-id="${item.uniqueId}"></i>
                 </div>
             </div>
-            <div class="item-price | col-lg-2 col-md-6 font-weight-bold d-flex justify-content-center align-items-center" data-id="${item._id}">${item.price /100} €</div>
+            <div class="item-price | col-lg-2 col-md-6 font-weight-bold d-flex justify-content-center align-items-center" data-id="${item.uniqueId}">${item.price /100} €</div>
             <div class="col-lg-1 col-md-12 font-weight-bold d-flex justify-content-center align-items-center">
-                <a class="item-delete | btn btn-outline-danger" href="#" role="button" data-id="${item._id}">Supprimer</a>
+                <a class="item-delete | btn btn-outline-danger" href="#" role="button" data-id="${item.uniqueId}">Supprimer</a>
             </div>
         </div>
         <!-- Single item end -->
@@ -70,17 +79,18 @@ function selectQuantity(item) {
 
     //Increase quantity button
     quantityUp.forEach(btnUp => {
+
         btnUp.addEventListener("click", (event) => {
 
-            if (event.target.getAttribute("data-id") === item._id) {
+            if (event.target.getAttribute("data-id") == item.uniqueId) {
                 itemQuantity.forEach(quantity => {
 
-                    if (quantity.getAttribute("data-id") === item._id) {
+                    if (quantity.getAttribute("data-id") == item.uniqueId) {
                         let qty = parseInt(quantity.textContent, 10);
                         qty++;
 
                         itemPrice.forEach(price => {
-                            if (price.getAttribute("data-id") === item._id) {
+                            if (price.getAttribute("data-id") == item.uniqueId) {
                                 quantity.innerHTML = qty;
                                 price.innerHTML = qty * item.price / 100 + " €";
                             };
@@ -98,10 +108,10 @@ function selectQuantity(item) {
     quantityDwn.forEach(btnDwn => {
         btnDwn.addEventListener("click", (event) => {
 
-            if (event.target.getAttribute("data-id") === item._id) {
+            if (event.target.getAttribute("data-id") == item.uniqueId) {
                 itemQuantity.forEach(quantity => {
 
-                    if (quantity.getAttribute("data-id") === item._id) {
+                    if (quantity.getAttribute("data-id") == item.uniqueId) {
                         let qty = parseInt(quantity.textContent, 10);
                         qty--;
 
@@ -110,7 +120,7 @@ function selectQuantity(item) {
                         };
 
                         itemPrice.forEach(price => {
-                            if (price.getAttribute("data-id") == item._id) {
+                            if (price.getAttribute("data-id") == item.uniqueId) {
                                 quantity.innerHTML = qty;
                                 price.innerHTML = qty * item.price / 100 + " €";
                             };
@@ -133,18 +143,18 @@ function deletingItem(item) {
     itemDeleteBtn.forEach(btnDelete => {
         btnDelete.addEventListener("click", (event) => {
 
-            if (event.target.getAttribute("data-id") === item._id) {
+            if (event.target.getAttribute("data-id") == item.uniqueId) {
                 //Deleting from display
                 let singleItem = document.querySelectorAll(".single-item");
 
                 singleItem.forEach(div => {
-                    if (div.getAttribute("data-id") === item._id) {
+                    if (div.getAttribute("data-id") == item.uniqueId) {
                         div.remove();
                     }
                 });
 
                 //Deleting from cart
-                let idItem = panier.indexOf(item._id);
+                let idItem = panier.indexOf(item.uniqueId);
                 panier.splice(idItem, 1);
                 localStorage.setItem("panier", JSON.stringify(panier));
 
@@ -202,16 +212,23 @@ function sendOrder() {
 //MAIN FUNCTION
 document.addEventListener("DOMContentLoaded", () => {
     console.log("Content loaded");
+    creatingUniqueId();
 
     panier.forEach(item => {
         let lensesOption = item.option;
+        let uniqueId = item.uniqueId;
+
         getItemFromCart(item.id).then(item => {
+            //Adding lense option
             item.lenses = lensesOption;
+            //Adding uniqueId
+            item.uniqueId = uniqueId;
             displayingItems(item);
             selectQuantity(item);
             displayingTotalPrice();
             deletingItem(item);
         });
+
     });
     sendOrder();
 });
