@@ -171,11 +171,11 @@ function deletingItem(item) {
 
 };
 
-//Submit Information
+//Sending Order
 function sendOrder() {
     const submitBtn = document.querySelector('.submit-button');
 
-    submitBtn.addEventListener("submit", (event) => {
+    submitBtn.addEventListener("click", (event) => {
         event.preventDefault();
         const firstName = document.getElementById('firstName').value;
         const lastName = document.getElementById('lastName').value;
@@ -203,9 +203,24 @@ function sendOrder() {
             contact: contact,
             products: products
         }
-        console.log(order);
-        // (POST)
-        // (clear cart)
+
+        //Sending Order(POST)
+        const options = {
+            method: 'POST',
+            body: JSON.stringify(order),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        }
+        fetch(apiUrl + 'order', options)
+            .then(order => order.json())
+            .then(order => localStorage.setItem('order', JSON.stringify(order)));
+
+        //Redirecting
+        setTimeout(() => {
+            localStorage.removeItem("panier");
+            document.location.href = "./thanks.html";
+        }, 1500);
     });
 };
 

@@ -13,6 +13,13 @@ const cameraOptions = document.querySelector(".camera-options");
 
 const addToCartButton = document.querySelector(".button-addToCart");
 
+class CartItem {
+    constructor(id, option) {
+        this.id = id;
+        this.option = option;
+    }
+}
+
 // Getting the camera
 async function getCamera() {
     try {
