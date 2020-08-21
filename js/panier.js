@@ -174,8 +174,10 @@ function deletingItem(item) {
 //Sending Order
 function sendOrder() {
     const submitBtn = document.querySelector('.submit-button');
+    const form = document.querySelector('.order-form');
 
-    submitBtn.addEventListener("submit", () => {
+    form.addEventListener("submit", (event) => {
+        event.preventDefault();
 
         const firstName = document.getElementById('firstName').value;
         const lastName = document.getElementById('lastName').value;
