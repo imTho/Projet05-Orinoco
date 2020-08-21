@@ -175,8 +175,8 @@ function deletingItem(item) {
 function sendOrder() {
     const submitBtn = document.querySelector('.submit-button');
 
-    submitBtn.addEventListener("click", (event) => {
-        event.preventDefault();
+    submitBtn.addEventListener("submit", () => {
+
         const firstName = document.getElementById('firstName').value;
         const lastName = document.getElementById('lastName').value;
         const address = document.getElementById('address').value;
@@ -216,7 +216,7 @@ function sendOrder() {
             .then(order => order.json())
             .then(order => localStorage.setItem('order', JSON.stringify(order)));
 
-        //Redirecting
+        // Redirecting
         setTimeout(() => {
             localStorage.removeItem("panier");
             document.location.href = "./thanks.html";
