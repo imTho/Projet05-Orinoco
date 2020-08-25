@@ -63,6 +63,12 @@ function addToCart(camera) {
         localStorage.setItem("panier", JSON.stringify(panier));
         //Displaying cart item number
         itemCounter.textContent = "( " + panier.length + " )";
+        //Cart notification
+        let cartNotification = document.querySelector(".cart-notification");
+        cartNotification.classList.add("d-block");
+        setTimeout(function () {
+            cartNotification.classList.remove("d-block")
+        }, 2000);
     }
 }
 

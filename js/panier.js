@@ -173,7 +173,6 @@ function deletingItem(item) {
 
 //Sending Order
 function sendOrder() {
-    const submitBtn = document.querySelector('.submit-button');
     const form = document.querySelector('.order-form');
 
     form.addEventListener("submit", (event) => {
