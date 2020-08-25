@@ -213,15 +213,16 @@ function sendOrder() {
                 'Content-Type': 'application/json'
             }
         }
+
         fetch(apiUrl + 'order', options)
             .then(order => order.json())
-            .then(order => localStorage.setItem('order', JSON.stringify(order)));
-
-        // Redirecting
-        setTimeout(() => {
-            localStorage.removeItem("panier");
-            document.location.href = "./thanks.html";
-        }, 1500);
+            .then(order => {
+                localStorage.setItem('order', JSON.stringify(order));
+                //Redirecting
+                localStorage.removeItem("panier");
+                document.location.href = "./thanks.html";
+            })
+            .catch(error => console.error("Erreur :" + error))
     });
 };
 
