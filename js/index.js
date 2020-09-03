@@ -41,6 +41,7 @@ function displayProducts(products) {
     productsDOM.innerHTML = display;
 }
 
+//MAIN FUNCTION
 document.addEventListener("DOMContentLoaded", () => {
     console.log("Content loaded");
 
