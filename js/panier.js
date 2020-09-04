@@ -1,5 +1,5 @@
 // Variables
-const apiUrl = 'http://localhost:3000/api/cameras/';
+const apiUrl = 'http://oc-p5-api.herokuapp.com/api/cameras/';
 var itemsTotalPrice = 0;
 
 const itemDisplay = document.querySelector(".item-display");

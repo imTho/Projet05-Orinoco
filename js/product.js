@@ -1,5 +1,5 @@
 // Variables
-const apiUrl = 'http://localhost:3000/api/cameras/';
+const apiUrl = 'http://oc-p5-api.herokuapp.com/api/cameras/';
 const idUrl = window.location.search;
 const urlParams = new URLSearchParams(idUrl);
 const idCamera = urlParams.get('id');
