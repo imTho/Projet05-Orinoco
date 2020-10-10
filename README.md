@@ -1,14 +1,21 @@
-# Orinoco #
+# [Formation OpenClassRooms](https://openclassrooms.com/fr/paths/185-developpeur-web)
+## Projet05-Orinoco - Interagir avec l'utilisateur et des services externes en JavaScript
 
+[Résultat final](https://imtho.github.io/Projet05-Orinoco/)
 
-### Prerequisites ###
+### Compétences professionnelles :
 
-You will need to have Node and `npm` installed locally on your machine.
+- Gérer des évènements en JavaScript
 
-### Installation ###
+- Interagir avec un web service en JavaScript (API)
 
-Clone this repo. From within the project folder, run `npm install`. You 
-can then run the server with `node server`in the `server` folder. 
-The server should run on `localhost` with default port `3000`. If the
-server runs on another port for any reason, this is printed to the
-console when the server starts, e.g. `Listening on port 3001`.
+- Valider et nettoyer les données issues de sources externes
+
+### Compétences techniques :
+
+- HTML
+- CSS / SCSS
+- JS
+- API
+- GIT
+- Responsive (media query / mobile first)
