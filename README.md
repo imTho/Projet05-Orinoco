@@ -1,7 +1,7 @@
 # [Formation OpenClassRooms](https://openclassrooms.com/fr/paths/185-developpeur-web)
 ## Projet05-Orinoco - Interagir avec l'utilisateur et des services externes en JavaScript
 
-[Résultat final](https://imtho.github.io/Projet05-Orinoco/)
+![](presentation_gif.gif)
 
 ### Compétences professionnelles :
 
